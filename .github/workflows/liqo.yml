@@ -1,0 +1,25 @@
+name: liqokelapa2
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v2
+
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: 151.243.222.70
+          username: liqo@zakkal.my.id
+          password: liqokelapa2
+          exclude: |
+            */.git
+            /.git/*
+            /node_modules/
