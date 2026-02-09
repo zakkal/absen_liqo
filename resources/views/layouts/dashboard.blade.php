@@ -50,12 +50,14 @@
 
                 <div class="sidebar-header" style="padding: 1.5rem 1.5rem 0.5rem;">
                     <div class="d-flex align-items-center">
-                        <div class="logo-icon me-3">
-                             <a href="{{ route('profile') }}">
+                        <div class="logo-icon me-3 flex-shrink-0">
+                             <a href="{{ route('profile') }}" class="d-block" style="width: 48px; height: 48px;">
                                 @if(Auth::user()->profile_photo)
-                                    <img src="{{ asset('storage/' . Auth::user()->profile_photo) }}" class="rounded-circle shadow-sm" style="width: 45px; height: 45px; object-fit: cover; border: 2px solid #435ebe;">
+                                    <div class="rounded-circle shadow-sm overflow-hidden border border-2 border-emerald-600" style="width: 48px; height: 48px;">
+                                        <img src="{{ asset('storage/' . Auth::user()->profile_photo) }}" style="width: 100%; height: 100%; object-fit: cover;">
+                                    </div>
                                 @else
-                                    <div class="bg-primary rounded-circle shadow-sm d-flex align-items-center justify-content-center" style="width: 45px; height: 45px;">
+                                    <div class="bg-emerald-600 rounded-circle shadow-sm d-flex align-items-center justify-content-center border border-2 border-emerald-50" style="width: 48px; height: 48px;">
                                         <i class="bi bi-person-fill text-white fs-4"></i>
                                     </div>
                                 @endif
