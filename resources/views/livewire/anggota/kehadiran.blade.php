@@ -15,17 +15,32 @@
         </header>
 
         <!-- Bagian Notifikasi (Simulasi Livewire Session Flash) -->
-        <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)" x-show="show" class="mb-6">
+        <div class="mb-6">
             @if(session()->has('success'))
             <div class="p-4 bg-green-100 border-l-4 border-green-500 text-green-700 rounded-lg shadow-md" role="alert">
                 <p class="font-bold">Berhasil!</p>
                 <p>{{ session('success') }}</p> 
             </div>
             @endif
+            @if(session()->has('error'))
+            <div class="p-4 bg-red-100 border-l-4 border-red-500 text-red-700 rounded-lg shadow-md" role="alert">
+                <p class="font-bold">Perhatian!</p>
+                <p>{{ session('error') }}</p> 
+            </div>
+            @endif
         </div>
 
         <!-- 1. Formulir Pengabsenan -->
         <div class="bg-white p-6 rounded-xl shadow-lg mb-8 border border-gray-100">
+            @if($alreadySubmitted)
+                <div class="text-center py-8">
+                    <div class="bg-blue-50 text-blue-700 p-6 rounded-xl border border-blue-100 inline-block">
+                        <i class="bi bi-check2-circle fs-1 mb-3 d-block"></i>
+                        <h3 class="text-xl font-bold mb-2">Presensi Hari Ini Selesai</h3>
+                        <p class="mb-0">Terima kasih, Anda sudah mencatatkan kehadiran pada <strong>{{ now()->translatedFormat('d F Y') }}</strong>.</p>
+                    </div>
+                </div>
+            @else
             <h2 class="text-2xl font-semibold text-gray-700 mb-4 border-b pb-2">Formulir Absensi</h2>
             
             <!-- Formulir Livewire, terikat ke fungsi simpan() -->
@@ -35,16 +50,11 @@
                 <div>
                     <label for="nama" class="block text-sm font-medium text-gray-700 mb-1">Nama Anggota</label>
                     <input 
-                        type="text" 
-                        id="nama" 
-                        wire:model.live="nama" 
-                        placeholder="Masukkan nama anggota"
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150"
+                        type="text"
+                        value="{{ auth()->user()->name }}"
+                        readonly
+                        class="w-full p-3 border border-gray-300 rounded-lg bg-gray-100 cursor-not-allowed"
                     >
-                    <!-- Simulasi Pesan Error (Livewire Validation) -->
-                    <div class="text-red-500 text-xs mt-1">
-                        @error('nama') {{ $message }} @enderror
-                    </div>
                 </div>
 
                 <!-- Input Status -->
@@ -60,7 +70,6 @@
                         <option value="Izin">Izin</option>
                         <option value="Sakit">Sakit</option>
                     </select>
-                    <!-- Simulasi Pesan Error (Livewire Validation) -->
                     <div class="text-red-500 text-xs mt-1">
                         @error('status') {{ $message }} @enderror
                     </div>
@@ -76,7 +85,6 @@
                         placeholder="Contoh: Keterangan Izin/Sakit, atau catatan lainnya"
                         class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150"
                     ></textarea>
-                    <!-- Simulasi Pesan Error (Livewire Validation) -->
                     <div class="text-red-500 text-xs mt-1">
                         @error('keterangan') {{ $message }} @enderror
                     </div>
@@ -90,7 +98,12 @@
                     Simpan Kehadiran
                 </button>
             </form>
+            @endif
         </div>
+
+     
+
+
 
         <!-- 2. Daftar Kehadiran -->
         <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100">

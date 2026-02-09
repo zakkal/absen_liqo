@@ -20,7 +20,10 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'no_wa',
+        'profile_photo',
         'password',
+        'last_activity',
     ];
 
     /**
@@ -41,14 +44,26 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'last_activity' => 'datetime',
     ];
+
+    public function isOnline()
+    {
+        return $this->last_activity && $this->last_activity->gt(now()->subSeconds(5));
+    }
+
 
     public function kehadiran() 
     {
-        return $this->hasMany(kehadiran::class);
+        return $this->hasMany(Kehadiran::class);
     }
     public function materi() 
     {
-        return $this->hasMany(materi::class);
+        return $this->hasMany(Materi::class);
+    }
+
+    public function muthabaahs()
+    {
+        return $this->hasMany(Muthabaah::class);
     }
 }

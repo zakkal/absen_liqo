@@ -13,12 +13,14 @@ class RoleMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next,... $roles): Response
+    public function handle(Request $request, Closure $next, ...$roles): Response
     {
         $user = $request->user();
-        if(!$user || in_array($user->role, $roles)) {
-            abort('403', 'gabisa di akses bro!!');
+        if ($user && in_array($user->role, $roles)) {
+            return $next($request);
         }
-        return $next($request);
+
+        abort(403, 'Akses ditolak! Anda tidak memiliki izin untuk halaman ini.');
     }
+
 }

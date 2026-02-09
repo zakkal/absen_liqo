@@ -10,10 +10,7 @@ use Livewire\Attributes\Layout;
 class Datateman extends Component
 {
     public $kehadirans;
-    // public $totalTeman;
-    // public $totalHadir;
-    // public $totalIzin;
-    // public $totalSakit;
+    public $users;
     
     public function render()
     {
@@ -21,10 +18,9 @@ class Datateman extends Component
     }
 
     public function mount(){
-        $this->kehadirans = Kehadiran::latest()->get();
-        // $this->totalTeman = $this->kehadirans->count();
-        // $this->totalHadir = $this->kehadirans->where('status', 'Hadir')->count();
-        // $this->totalIzin = $this->kehadirans->where('status', 'Izin')->count();
-        // $this->totalSakit = $this->kehadirans->where('status', 'Sakit')->count();
+        $this->kehadirans = Kehadiran::with('user')->latest()->get();
+        $this->users = \App\Models\User::all();
     }
+
+
 }

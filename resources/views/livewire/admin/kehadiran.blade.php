@@ -87,7 +87,7 @@
 
             <div class="flex justify-end gap-2 mt-6">
                 <button wire:click="$set('editId', null)" class="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300">Batal</button>
-               <button wire:click="update" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">Hapus</button>
+               <button wire:click="update" class="btn btn-info text-white">Perbarui</button>
         </div>
     </div>
     @endif

@@ -19,14 +19,14 @@ class Kehadiran extends Component
     // Untuk modal delete
     public $deleteId;
 
-    public function mount()
-    {
-        if (!Auth::check()) {
-            return redirect()->route('login');
-        }
-
-       $this->kehadirans = KehadiranModel::latest()->get();
+   public function mount (){
+    if (!Auth::check()) {
+        return redirect()->route ('login');
     }
+$this -> kehadirans = kehadiranModel::latest()->get();
+
+       
+   }
 
     // 🔹 Buka modal edit
     public function openEdit($id)
@@ -34,7 +34,7 @@ class Kehadiran extends Component
         $data = KehadiranModel::find($id);
 
         $this->editId = $data->id;
-        $this->nama   = $data->nama;
+      
         $this->status = $data->status;
     }
 
@@ -47,7 +47,7 @@ class Kehadiran extends Component
         ]);
 
         $this->mount(); // refresh
-
+return redirect()->route('admin.kehadiran');
         session()->flash('success', 'Data updated successfully.');
     }
 
@@ -66,6 +66,7 @@ class Kehadiran extends Component
         $this->mount(); // refresh
 
         session()->flash('success', 'Data deleted successfully.');
+        return redirect()->route('admin.kehadiran')->with('succsess, data berhasil di tambahkan');
     }
 
 

@@ -16,6 +16,9 @@ use App\Livewire\Auth\Passwords\Email;
 use App\Livewire\Auth\Passwords\Reset;
 use App\Livewire\Auth\Register;
 use App\Livewire\Auth\Verify;
+use App\Livewire\Anggota\Muthabaah as AnggotaMuthabaah;
+use App\Livewire\Admin\Muthabaah as AdminMuthabaah;
+use App\Livewire\Profile;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -61,25 +64,30 @@ Route::middleware('auth')->group(function () {
 
     Route::post('logout', LogoutController::class)
         ->name('logout');
+    
+    Route::get('profile', Profile::class)->name('profile');
 });
 
 // Routes untuk Anggota (User/Member)
 Route::prefix('anggota')
-->middleware(['auth', 'role:admin'])
+->middleware(['auth', 'role:anggota'])
 ->group(function () {
     Route::get('hadir', Kehadiran::class)->name('hadir');
     Route::get('datatemen', Datateman::class)->name('datatemen');
     Route::get('pengumuman', AnggotaPengumuman::class)->name('umum');
     Route::get('petugas', AnggotaPetugas::class)->name('tugas');
+    Route::get('muthabaah', AnggotaMuthabaah::class)->name('anggota.muthabaah');
+    Route::redirect('muthabaah-redirect', 'anggota/muthabaah')->name('muthabaah');
     
 });
 
 // Routes untuk Admin
 Route::prefix('admin')
-->middleware(['auth', 'role:anggota'])
+->middleware(['auth', 'role:admin'])
 ->group(function () {
     Route::get('kehadiran', AdminKehadiran::class)->name('admin.kehadiran');
     Route::get('pengumuman', Pengumuman::class)->name('pengumuman');
    Route::get('grafik', Grafik::class)->name('grafik');
     Route::get('petugas', Petugas::class)->name('admin.petugas');
+    Route::get('muthabaah', AdminMuthabaah::class)->name('admin.muthabaah');
 });

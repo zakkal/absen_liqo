@@ -1,0 +1,62 @@
+<?php
+
+namespace App\Livewire;
+
+use Livewire\Component;
+
+use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+
+class Profile extends Component
+{
+    use WithFileUploads;
+
+    public $name;
+    public $no_wa;
+    public $photo;
+    public $current_photo;
+
+    public function mount()
+    {
+        $user = Auth::user();
+        $this->name = $user->name;
+        $this->no_wa = $user->no_wa;
+        $this->current_photo = $user->profile_photo;
+    }
+
+    public function save()
+    {
+        $this->validate([
+            'name' => 'required|string|max:255',
+            'no_wa' => 'nullable|string|max:20',
+            'photo' => 'nullable|image|max:2048', // 2MB Max
+        ]);
+
+        $user = Auth::user();
+        $data = [
+            'name' => $this->name,
+            'no_wa' => $this->no_wa,
+        ];
+
+        if ($this->photo) {
+            // Delete old photo if exists
+            if ($user->profile_photo) {
+                Storage::disk('public')->delete($user->profile_photo);
+            }
+
+            $path = $this->photo->store('profile-photos', 'public');
+            $data['profile_photo'] = $path;
+            $this->current_photo = $path;
+        }
+
+        $user->update($data);
+
+        session()->flash('message', 'Profil berhasil diperbarui.');
+    }
+
+    public function render()
+    {
+        return view('livewire.profile')->layout('layouts.dashboard');
+    }
+}

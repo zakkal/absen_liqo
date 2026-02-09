@@ -73,6 +73,23 @@
                     @enderror
                 </div>
 
+                {{-- Field: No WA --}}
+                <div class="mt-6">
+                    <label for="no_wa" class="block text-sm font-medium text-gray-700 leading-5">
+                        WhatsApp Number
+                    </label>
+
+                    <div class="mt-1 rounded-md shadow-sm">
+                        <input wire:model.lazy="no_wa" id="no_wa" type="tel" required 
+                            placeholder="Contoh: 081234567890"
+                            class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-teal focus:border-teal-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('no_wa') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:ring-red @enderror" />
+                    </div>
+
+                    @error('no_wa')
+                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+
                 {{-- Field: Password --}}
                 <div class="mt-6">
                     <label for="password" class="block text-sm font-medium text-gray-700 leading-5">
