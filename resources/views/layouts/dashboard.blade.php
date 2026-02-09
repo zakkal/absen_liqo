@@ -145,9 +145,9 @@
             </div>
 
             <div class="page-content">
-                <p class="text-end">created by zakkal❤️</p>
                 {{ $slot ?? '' }}
                 @yield('content')
+                <p class="text-end mt-4 text-muted small">created by zakkal❤️</p>
             </div>
 
         </div>
