@@ -15,7 +15,6 @@ class SocialiteController extends Controller
      */
     public function redirectToGoogle()
     {
-        die('Controller Reached - Mesin Laravel sudah berjalan');
         try {
             return Socialite::driver('google')->redirect();
         } catch (\Exception $e) {

@@ -46,15 +46,6 @@ Route::get('/clear-cache', function() {
     return "Semua cache berhasil dibersihkan! Silakan kembali ke halaman login.";
 })->name('clear.cache');
 
-// Route Debug untuk tes Google di Hosting
-Route::get('/debug-google', function() {
-    try {
-        return Laravel\Socialite\Facades\Socialite::driver('google')->redirect();
-    } catch (\Exception $e) {
-        return "DEBUG GOOGLE ERROR: " . $e->getMessage() . " | Cek apakah folder vendor/laravel/socialite sudah ada di hosting.";
-    }
-});
-
 Route::get('auth/google', [SocialiteController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('auth/google/callback', [SocialiteController::class, 'handleGoogleCallback']);
 
