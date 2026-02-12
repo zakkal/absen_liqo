@@ -18,7 +18,9 @@ class SocialiteController extends Controller
         try {
             return Socialite::driver('google')->redirect();
         } catch (\Exception $e) {
-            return "ERROR REDIRECT GOOGLE: " . $e->getMessage();
+            $msg = $e->getMessage();
+            $uri = config('services.google.redirect');
+            return "Gagal mengarahkan ke Google. <br>Pesan Error: $msg <br>Redirect URI di sistem: $uri <br><br><b>Saran:</b> Pastikan folder 'vendor/laravel/socialite' sudah ada di hosting.";
         }
     }
 
