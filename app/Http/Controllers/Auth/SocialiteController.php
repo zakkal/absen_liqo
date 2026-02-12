@@ -16,7 +16,9 @@ class SocialiteController extends Controller
      */
     public function redirectToGoogle()
     {
-        Log::info('Google Login Attempted');
+        $uri = config('services.google.redirect');
+        Log::info('Google Login Attempted with URI: ' . $uri);
+        
         try {
             return Socialite::driver('google')->redirect();
         } catch (\Exception $e) {
