@@ -40,7 +40,7 @@
                 <div class="text-center md:text-left flex-1">
                     <div class="inline-flex items-center gap-2 bg-white/20 px-3 py-1 rounded-full border border-white/30 mb-3">
                         <span class="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></span>
-                        <span class="text-white text-[10px] font-black tracking-widest uppercase">Member Profile</span>
+                        <span class="text-white text-[10px] font-black tracking-widest uppercase">{{ auth()->user()->role === 'admin' ? 'Admin Profile' : 'Member Profile' }}</span>
                     </div>
                     <h1 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight leading-none mb-2">{{ auth()->user()->name }}</h1>
                     <p class="text-teal-50 text-sm md:text-base font-medium opacity-90">Atur informasi profil dan foto Anda di halaman ini.</p>
@@ -58,11 +58,11 @@
                     Informasi Dasar
                 </h3>
 
-                @if (session()->has('message'))
+                @if (session()->has('status'))
                     <div class="mb-6 animate-fade-in">
-                        <div class="p-4 bg-emerald-50 border border-emerald-100 text-emerald-700 rounded-2xl flex items-center gap-3">
-                            <i class="bi bi-check-circle-fill text-xl"></i>
-                            <div class="text-sm font-bold">{{ session('message') }}</div>
+                        <div class="p-4 bg-amber-50 border border-amber-100 text-amber-700 rounded-2xl flex items-center gap-3">
+                            <i class="bi bi-exclamation-triangle-fill text-xl"></i>
+                            <div class="text-sm font-bold">{{ session('status') }}</div>
                         </div>
                     </div>
                 @endif

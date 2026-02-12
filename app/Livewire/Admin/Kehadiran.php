@@ -34,21 +34,25 @@ $this -> kehadirans = kehadiranModel::latest()->get();
         $data = KehadiranModel::find($id);
 
         $this->editId = $data->id;
-      
+        $this->nama   = $data->nama;
         $this->status = $data->status;
     }
 
     // 🔹 Update data
     public function update()
     {
+        $this->validate([
+            'nama'   => 'required',
+            'status' => 'required',
+        ]);
+
         KehadiranModel::where('id', $this->editId)->update([
             'nama'   => $this->nama,
             'status' => $this->status,
         ]);
 
-        $this->mount(); // refresh
-return redirect()->route('admin.kehadiran');
         session()->flash('success', 'Data updated successfully.');
+        return redirect()->route('admin.kehadiran');
     }
 
 
@@ -63,10 +67,8 @@ return redirect()->route('admin.kehadiran');
     {
         KehadiranModel::where('id', $this->deleteId)->delete();
 
-        $this->mount(); // refresh
-
         session()->flash('success', 'Data deleted successfully.');
-        return redirect()->route('admin.kehadiran')->with('succsess, data berhasil di tambahkan');
+        return redirect()->route('admin.kehadiran');
     }
 
 

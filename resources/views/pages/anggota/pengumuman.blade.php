@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
 
 @section('content')
-livewire(anggota.pengumuman)
+    @livewire('anggota.pengumuman')
 @endsection

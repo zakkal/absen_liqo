@@ -52,11 +52,17 @@ class Profile extends Component
 
         $user->update($data);
 
+        if (!empty($user->no_wa) && !empty($user->name) && !str_starts_with($user->name, 'User ')) {
+            session()->flash('message', 'Profil berhasil dilengkapi.');
+            return redirect()->route('hadir');
+        }
+
         session()->flash('message', 'Profil berhasil diperbarui.');
     }
 
     public function render()
     {
-        return view('livewire.profile')->layout('layouts.dashboard');
+        $layout = Auth::user()->role === 'admin' ? 'layouts.beranda' : 'layouts.dashboard';
+        return view('livewire.profile')->layout($layout);
     }
 }

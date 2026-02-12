@@ -100,9 +100,8 @@
                     @endif
                 @else
                     <div class="flex items-center gap-4">
-                        <a href="{{ route('login') }}" class="text-sm font-bold text-primary hover:opacity-80 transition-opacity">Masuk</a>
-                        <a href="{{ route('register') }}" class="bg-primary text-white px-6 py-2.5 rounded-full font-bold text-sm shadow-md btn-premium">
-                             Daftar Sekarang
+                        <a href="{{ route('login') }}" class="bg-primary text-white px-8 py-2.5 rounded-full font-bold text-sm shadow-md btn-premium">
+                             Masuk Sekarang
                         </a>
                     </div>
                 @endauth
@@ -132,8 +131,7 @@
                 <a href="{{ route('hadir') }}" class="bg-primary text-white p-4 rounded-2xl text-center font-bold">DASHBOARD ANGGOTA</a>
             @endif
         @else
-            <a href="{{ route('login') }}" class="text-center font-bold text-primary text-lg">Masuk</a>
-            <a href="{{ route('register') }}" class="bg-primary text-white p-4 rounded-2xl text-center font-bold">Daftar Sekarang</a>
+            <a href="{{ route('login') }}" class="bg-primary text-white p-4 rounded-2xl text-center font-bold">Masuk Sekarang</a>
         @endauth
     </div>
 
@@ -163,8 +161,8 @@
                             Masuk Ke Dashboard <i class="bi bi-arrow-right ms-2"></i>
                         </a>
                     @else
-                        <a href="{{ route('register') }}" class="bg-primary text-white px-8 py-4 rounded-2xl font-bold shadow-xl hover:shadow-primary/30 transition-all btn-premium text-center">
-                            Gabung Sekarang <i class="bi bi-plus-lg ms-2"></i>
+                        <a href="{{ route('login') }}" class="bg-primary text-white px-8 py-4 rounded-2xl font-bold shadow-xl hover:shadow-primary/30 transition-all btn-premium text-center">
+                            Gabung Sekarang <i class="bi bi-person-check ms-2"></i>
                         </a>
                     @endauth
                     <a href="#schedule" class="bg-white text-slate-900 border border-slate-200 px-8 py-4 rounded-2xl font-bold hover:bg-slate-50 transition-all text-center">

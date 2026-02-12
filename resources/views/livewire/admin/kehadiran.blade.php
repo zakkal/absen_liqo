@@ -108,6 +108,7 @@
                         <span class="absolute left-4 top-3 text-gray-400"><i class="bi bi-person"></i></span>
                         <input type="text" wire:model="nama" class="w-full pl-11 pr-4 py-3 bg-gray-50 border-0 rounded-2xl focus:ring-2 focus:ring-teal-600 transition-all font-semibold text-gray-700" placeholder="Nama lengkap">
                     </div>
+                    @error('nama') <span class="text-rose-500 text-[10px] mt-1 font-bold">{{ $message }}</span> @enderror
                 </div>
 
                 <div>
@@ -123,6 +124,7 @@
                         </select>
                         <span class="absolute right-4 top-3 text-gray-400 pointer-events-none"><i class="bi bi-chevron-down"></i></span>
                     </div>
+                    @error('status') <span class="text-rose-500 text-[10px] mt-1 font-bold">{{ $message }}</span> @enderror
                 </div>
             </div>
 

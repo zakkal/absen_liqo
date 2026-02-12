@@ -226,7 +226,7 @@
                                 <span class="avatar avatar-sm bg-amber-100 text-amber-700 rounded-3 p-2"><i class="bi bi-shield-lock"></i></span>
                                 <div>
                                     <small class="text-muted d-block fw-bold xsmall uppercase">Hak Akses</small>
-                                    <span class="badge bg-amber-600 rounded-pill px-3">{{ strtoupper($selectedUser->role) }}</span>
+                                    <span class="badge bg-amber-100 text-dark rounded-pill px-3">{{ strtoupper($selectedUser->role) }}</span>
                                 </div>
                             </div>
                         </div>

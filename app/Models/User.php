@@ -20,8 +20,11 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'role',
         'no_wa',
         'profile_photo',
+        'google_id',
+        'avatar',
         'password',
         'last_activity',
     ];
@@ -52,6 +55,10 @@ class User extends Authenticatable
         return $this->last_activity && $this->last_activity->gt(now()->subSeconds(5));
     }
 
+    public function hasRole($role)
+    {
+        return $this->role === $role;
+    }
 
     public function kehadiran() 
     {
