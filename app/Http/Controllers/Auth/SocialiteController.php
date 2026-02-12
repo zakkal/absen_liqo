@@ -15,7 +15,11 @@ class SocialiteController extends Controller
      */
     public function redirectToGoogle()
     {
-        return Socialite::driver('google')->redirect();
+        try {
+            return Socialite::driver('google')->redirect();
+        } catch (\Exception $e) {
+            return "ERROR REDIRECT GOOGLE: " . $e->getMessage();
+        }
     }
 
     /**
