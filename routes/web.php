@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Auth\SocialiteController;
 use App\Livewire\Admin\Kehadiran as AdminKehadiran;
 use App\Livewire\Anggota\Kehadiran;
 use App\Livewire\Anggota\Datateman;
@@ -20,7 +21,6 @@ use App\Livewire\Auth\Verify;
 use App\Livewire\Anggota\Muthabaah as AnggotaMuthabaah;
 use App\Livewire\Admin\Muthabaah as AdminMuthabaah;
 use App\Livewire\Profile;
-use App\Http\Controllers\Auth\SocialiteController;
 use Illuminate\Support\Facades\Route;
 
 /*

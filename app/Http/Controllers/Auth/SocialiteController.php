@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Laravel\Socialite\Facades\Socialite;
 
 class SocialiteController extends Controller
@@ -15,9 +16,11 @@ class SocialiteController extends Controller
      */
     public function redirectToGoogle()
     {
+        Log::info('Google Login Attempted');
         try {
             return Socialite::driver('google')->redirect();
         } catch (\Exception $e) {
+            Log::error('Google Redirect Error: ' . $e->getMessage());
             $msg = $e->getMessage();
             $uri = config('services.google.redirect');
             return "Gagal mengarahkan ke Google. <br>Pesan Error: $msg <br>Redirect URI di sistem: $uri <br><br><b>Saran:</b> Pastikan folder 'vendor/laravel/socialite' sudah ada di hosting.";
@@ -30,6 +33,7 @@ class SocialiteController extends Controller
     public function handleGoogleCallback()
     {
         try {
+            Log::info('Google Callback Received');
             $googleUser = Socialite::driver('google')->user();
             
             // Find user by google_id or email
@@ -65,6 +69,7 @@ class SocialiteController extends Controller
             return redirect()->intended(route('hadir')); // Redirect anggota to attendance page
 
         } catch (Exception $e) {
+            Log::error('Google Callback Error: ' . $e->getMessage());
             return redirect()->route('login')->with('error', 'Gagal login menggunakan Google. Silakan coba lagi.');
         }
     }
