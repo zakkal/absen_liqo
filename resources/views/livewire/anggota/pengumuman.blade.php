@@ -26,41 +26,39 @@
 
     <div class="grid grid-cols-1 gap-6 px-1">
         @forelse ($pengumumans as $item)
-            @if($item->is_active)
-                <div class="glass-card rounded-[35px] overflow-hidden shadow-lg shadow-gray-200/50 border-none group animate-fade-up">
-                    {{-- Decorative Top Line --}}
-                    <div class="h-2 w-full bg-gradient-to-r from-emerald-400 to-[#00796B]"></div>
-                    
-                    <div class="p-6 md:p-8">
-                        <div class="flex items-center gap-4 mb-5">
-                            <div class="w-14 h-14 bg-emerald-600 rounded-2xl flex flex-col items-center justify-center text-white shadow-lg shadow-emerald-600/30">
-                                <span class="text-lg font-black leading-none">{{ $item->created_at->format('d') }}</span>
-                                <span class="text-[8px] font-bold uppercase">{{ $item->created_at->format('M') }}</span>
-                            </div>
-                            <div>
-                                <h3 class="text-lg font-black text-gray-800 leading-tight">{{ $item->judul }}</h3>
-                                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{{ $item->created_at->diffForHumans() }}</span>
-                            </div>
+            <div class="glass-card rounded-[35px] overflow-hidden shadow-lg shadow-gray-200/50 border-none group animate-fade-up">
+                {{-- Decorative Top Line --}}
+                <div class="h-2 w-full bg-gradient-to-r from-emerald-400 to-[#00796B]"></div>
+                
+                <div class="p-6 md:p-8">
+                    <div class="flex items-center gap-4 mb-5">
+                        <div class="w-14 h-14 bg-emerald-600 rounded-2xl flex flex-col items-center justify-center text-white shadow-lg shadow-emerald-600/30">
+                            <span class="text-lg font-black leading-none">{{ $item->created_at->format('d') }}</span>
+                            <span class="text-[8px] font-bold uppercase">{{ $item->created_at->format('M') }}</span>
                         </div>
-
-                        <div class="bg-gray-50/50 rounded-3xl p-5 border border-gray-100/50 relative">
-                            <i class="bi bi-quote absolute top-2 right-4 text-emerald-100 text-3xl"></i>
-                            <p class="text-gray-600 text-sm leading-relaxed font-medium relative z-10 whitespace-pre-wrap truncate-multi-4">
-                                {{ $item->isi }}
-                            </p>
-                        </div>
-
-                        <div class="mt-6 flex items-center justify-between">
-                            <div class="flex -space-x-2">
-                                <div class="w-8 h-8 rounded-full bg-emerald-100 border-2 border-white flex items-center justify-center text-[10px] font-bold text-emerald-600">A</div>
-                                <div class="w-8 h-8 rounded-full bg-sky-100 border-2 border-white flex items-center justify-center text-[10px] font-bold text-sky-600">D</div>
-                                <div class="w-8 h-8 rounded-full bg-emerald-600 border-2 border-white flex items-center justify-center text-[10px] font-bold text-white">M</div>
-                            </div>
-                            <span class="text-[9px] font-black text-emerald-600 uppercase tracking-[0.2em] bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-100">Info Halaqah</span>
+                        <div>
+                            <h3 class="text-lg font-black text-gray-800 leading-tight">{{ $item->judul }}</h3>
+                            <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{{ $item->created_at->diffForHumans() }}</span>
                         </div>
                     </div>
+
+                    <div class="bg-gray-50/50 rounded-3xl p-5 border border-gray-100/50 relative">
+                        <i class="bi bi-quote absolute top-2 right-4 text-emerald-100 text-3xl"></i>
+                        <p class="text-gray-600 text-sm leading-relaxed font-medium relative z-10 whitespace-pre-wrap truncate-multi-4">
+                            {{ $item->isi }}
+                        </p>
+                    </div>
+
+                    <div class="mt-6 flex items-center justify-between">
+                        <div class="flex -space-x-2">
+                            <div class="w-8 h-8 rounded-full bg-emerald-100 border-2 border-white flex items-center justify-center text-[10px] font-bold text-emerald-600">A</div>
+                            <div class="w-8 h-8 rounded-full bg-sky-100 border-2 border-white flex items-center justify-center text-[10px] font-bold text-sky-600">D</div>
+                            <div class="w-8 h-8 rounded-full bg-emerald-600 border-2 border-white flex items-center justify-center text-[10px] font-bold text-white">M</div>
+                        </div>
+                        <span class="text-[9px] font-black text-emerald-600 uppercase tracking-[0.2em] bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-100">Info Halaqah</span>
+                    </div>
                 </div>
-            @endif
+            </div>
         @empty
             <div class="bg-white rounded-[40px] p-20 text-center border-2 border-dashed border-emerald-100 flex flex-col items-center">
                 <div class="w-24 h-24 bg-emerald-50 text-emerald-200 rounded-full flex items-center justify-center mb-6 shadow-inner">
