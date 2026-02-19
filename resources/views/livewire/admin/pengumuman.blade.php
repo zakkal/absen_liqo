@@ -103,7 +103,7 @@
     {{-- MODAL CREATE --}}
     @if ($showCreate)
         <div class="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-fade-in">
-            <div class="bg-white rounded-[40px] shadow-2xl w-full max-w-xl overflow-hidden transform transition-all animate-zoom-in border border-white/20">
+            <div class="bg-white rounded-[40px] shadow-2xl w-full max-w-xl overflow-hidden transform transition-all animate-zoom-in border border-white/20 flex flex-col max-h-[90vh]">
                 <div class="bg-[#00796B] px-8 py-8 text-white flex justify-between items-center relative overflow-hidden shrink-0">
                     <div class="absolute -right-10 -top-10 w-40 h-40 bg-white/10 rounded-full"></div>
                     <div class="relative">
@@ -115,7 +115,7 @@
                     </button>
                 </div>
 
-                <div class="p-10 space-y-8">
+                <div class="p-10 space-y-8 overflow-y-auto flex-1">
                     <div>
                         <label class="text-[10px] font-black text-emerald-600 uppercase tracking-[0.2em] mb-3 block px-1">Judul Strategis</label>
                         <input type="text" wire:model="judul" class="w-full px-6 py-4 bg-gray-50 border-2 border-transparent rounded-[24px] focus:border-emerald-600 focus:bg-white focus:ring-0 transition-all font-bold text-gray-800 shadow-inner" placeholder="Contoh: Info Halaqah Terupdate">
@@ -150,7 +150,7 @@
     {{-- MODAL EDIT --}}
     @if ($editId)
         <div class="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-fade-in">
-            <div class="bg-white rounded-[40px] shadow-2xl w-full max-w-xl overflow-hidden transform transition-all animate-zoom-in border border-white/20">
+            <div class="bg-white rounded-[40px] shadow-2xl w-full max-w-xl overflow-hidden transform transition-all animate-zoom-in border border-white/20 flex flex-col max-h-[90vh]">
                 <div class="bg-sky-700 px-8 py-8 text-white flex justify-between items-center relative overflow-hidden shrink-0">
                     <div class="absolute -right-10 -top-10 w-40 h-40 bg-white/10 rounded-full"></div>
                     <div class="relative">
@@ -162,7 +162,7 @@
                     </button>
                 </div>
 
-                <div class="p-10 space-y-8">
+                <div class="p-10 space-y-8 overflow-y-auto flex-1">
                     <div>
                         <label class="text-[10px] font-black text-sky-600 uppercase tracking-[0.2em] mb-3 block px-1">Judul Update</label>
                         <input type="text" wire:model="judul" class="w-full px-6 py-4 bg-gray-50 border-2 border-transparent rounded-[24px] focus:border-sky-600 focus:bg-white focus:ring-0 transition-all font-bold text-gray-800 shadow-inner">
