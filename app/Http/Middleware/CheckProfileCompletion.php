@@ -26,7 +26,7 @@ class CheckProfileCompletion
             if ($isWaIncomplete || $isNameDefault || empty($user->name)) {
                 if (!$request->routeIs('profile') && !$request->routeIs('logout')) {
                     $reason = $isWaIncomplete ? 'Nomor WhatsApp Anda belum valid.' : 'Nama Anda masih menggunakan nama default.';
-                    return redirect()->route('profile')->with('status', "Penting: $reason Silakan lengkapi profil Anda untuk melanjutkan.");
+                    return redirect()->route('profile')->with('profile_incomplete', "PENTING: $reason Silakan lengkapi profil Anda (Nama & Nomor WhatsApp) terlebih dahulu untuk dapat menggunakan fitur aplikasi.");
                 }
             }
         }

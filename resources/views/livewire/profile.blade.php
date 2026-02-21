@@ -58,11 +58,52 @@
                     Informasi Dasar
                 </h3>
 
+                @if ($isIncomplete && (session()->has('profile_incomplete') || !session()->has('message')))
+                    <!-- Overlay Warning Centered (Smaller Version) -->
+                    <div class="fixed inset-0 z-[9999] flex items-center justify-center p-6 bg-slate-900/80 backdrop-blur-lg animate-fade-in" id="profile-warning-modal">
+                        <div class="bg-white rounded-[2.5rem] shadow-[0_20px_50px_-10px_rgba(225,29,72,0.4)] max-w-sm w-full overflow-hidden border-[4px] border-rose-500/10 transform transition-all animate-float">
+                            <div class="bg-gradient-to-br from-rose-500 via-rose-600 to-rose-700 p-8 text-center relative overflow-hidden">
+                                <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-10 -mt-10 blur-2xl"></div>
+                                
+                                <div class="relative z-10">
+                                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-xl border-4 border-rose-400/20">
+                                        <i class="bi bi-shield-lock-fill text-rose-500 text-3xl"></i>
+                                    </div>
+                                    <h2 class="text-xl font-black text-white uppercase tracking-tight leading-none mb-1">Akses Terbatas</h2>
+                                    <p class="text-rose-100 font-bold tracking-widest text-[8px] uppercase">Lengkapi Data Anda</p>
+                                </div>
+                            </div>
+                            
+                            <div class="p-8 text-center bg-white">
+                                <p class="text-slate-600 font-bold text-sm leading-relaxed mb-6">
+                                    {{ session('profile_incomplete') ?? 'Mohon lengkapi Nama Anda dan Nomor WhatsApp agar dapat mengakses seluruh fitur aplikasi.' }}
+                                </p>
+                                <div class="flex flex-col gap-3">
+                                    <button wire:click="$set('isIncomplete', false)" class="group w-full py-4 bg-rose-600 text-white font-black rounded-2xl hover:bg-rose-700 transition-all uppercase tracking-widest text-[11px] flex items-center justify-center gap-2">
+                                        LENGKAPI SEKARANG
+                                        <i class="bi bi-arrow-right-short text-xl group-hover:translate-x-1 transition-transform"></i>
+                                    </button>
+                                    <p class="text-[9px] font-bold text-slate-400 uppercase tracking-tight">*Data diperlukan untuk presensi</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
                 @if (session()->has('status'))
                     <div class="mb-6 animate-fade-in">
-                        <div class="p-4 bg-amber-50 border border-amber-100 text-amber-700 rounded-2xl flex items-center gap-3">
-                            <i class="bi bi-exclamation-triangle-fill text-xl"></i>
-                            <div class="text-sm font-bold">{{ session('status') }}</div>
+                        <div class="p-6 bg-emerald-50 border-2 border-emerald-100 text-emerald-700 rounded-[2rem] flex items-center gap-4 shadow-sm">
+                            <i class="bi bi-check-circle-fill text-2xl text-emerald-500"></i>
+                            <div class="text-sm font-black">{{ session('status') }}</div>
+                        </div>
+                    </div>
+                @endif
+
+                @if (session()->has('message'))
+                    <div class="mb-6 animate-fade-in">
+                        <div class="p-6 bg-teal-50 border-2 border-teal-100 text-teal-700 rounded-[2rem] flex items-center gap-4 shadow-sm">
+                            <i class="bi bi-stars text-2xl text-teal-500"></i>
+                            <div class="text-sm font-black">{{ session('message') }}</div>
                         </div>
                     </div>
                 @endif

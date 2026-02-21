@@ -20,7 +20,7 @@ class RoleMiddleware
             return $next($request);
         }
 
-        abort(403, 'Akses ditolak! Anda tidak memiliki izin untuk halaman ini.');
+        abort(403, 'sorry nih, kamu gak bisa akses halaman ini 😉');
     }
 
 }

@@ -120,7 +120,7 @@ class LoginWa extends Component
             Auth::login($user);
 
             if ($user->hasRole('admin')) {
-                return redirect()->intended(route('grafik'));
+                return redirect()->intended(route('admin.kehadiran'));
             }
 
             return redirect()->intended(route('hadir'));

@@ -162,7 +162,7 @@
                         </a>
                     @else
                         <a href="{{ route('login') }}" class="bg-primary text-white px-8 py-4 rounded-2xl font-bold shadow-xl hover:shadow-primary/30 transition-all btn-premium text-center">
-                            Gabung Sekarang <i class="bi bi-person-check ms-2"></i>
+                            ayo masuk!! <i class="bi bi-person-check ms-2"></i>
                         </a>
                     @endauth
                     <a href="#schedule" class="bg-white text-slate-900 border border-slate-200 px-8 py-4 rounded-2xl font-bold hover:bg-slate-50 transition-all text-center">
@@ -177,7 +177,7 @@
                         <p class="text-xs text-slate-500 font-bold uppercase tracking-widest mt-1">Sertiap Minggu</p>
                     </div>
                     <div class="border-l border-slate-200 pl-12 text-left">
-                        <h4 class="text-2xl font-extrabold text-primary">30+</h4>
+                        <h4 class="text-2xl font-extrabold text-primary">10+</h4>
                         <p class="text-xs text-slate-500 font-bold uppercase tracking-widest mt-1">Anggota Aktif</p>
                     </div>
                 </div>
@@ -323,13 +323,13 @@
                     <span class="font-bold">0858-1054-4838</span>
                 </a>
                 <a href="#" class="flex items-center gap-3 text-white/80 hover:text-white transition-colors">
-                    <i class="bi bi-instagram text-2xl"></i>
-                    <span class="font-bold">@LiqoKelapaDua</span>
+                
+                    <span class="font-bold">LIQO KELAPA 2 IS THE BEST</span>
                 </a>
             </div>
             <div class="w-20 h-1 bg-primary/30 mx-auto rounded-full"></div>
             <p class="text-white/40 text-sm">
-                &copy; 2025 Liqo Kelapa Dua. Dikelola oleh Komunitas Peduli Ilmu.<br>
+                &copy; 2025 Liqo Kelapa Dua. Dikelola oleh Bersama-sama<br>
                 <span class="mt-4 block font-bold text-[10px] tracking-widest uppercase">Created by Zakkal ❤️</span>
             </p>
         </div>

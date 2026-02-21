@@ -65,7 +65,7 @@ class SocialiteController extends Controller
 
             // Redirect based on role
             if ($user->hasRole('admin')) {
-                return redirect()->intended(route('grafik')); // Redirect admin to dashboard/grafik
+                return redirect()->intended(route('admin.kehadiran')); // Redirect admin to dashboard
             }
 
             return redirect()->intended(route('hadir')); // Redirect anggota to attendance page

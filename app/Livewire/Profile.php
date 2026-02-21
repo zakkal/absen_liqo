@@ -16,6 +16,7 @@ class Profile extends Component
     public $no_wa;
     public $photo;
     public $current_photo;
+    public $isIncomplete = false;
 
     public function mount()
     {
@@ -23,6 +24,14 @@ class Profile extends Component
         $this->name = $user->name;
         $this->no_wa = $user->no_wa;
         $this->current_photo = $user->profile_photo;
+
+        // Persistent check for incomplete profile
+        $isNameDefault = str_starts_with($user->name, 'User ') && strlen($user->name) <= 10;
+        $isWaIncomplete = empty($user->no_wa) || strlen($user->no_wa) < 10;
+        
+        if (($isWaIncomplete || $isNameDefault || empty($user->name)) && !$user->hasRole('admin')) {
+            $this->isIncomplete = true;
+        }
     }
 
     public function save()
@@ -54,6 +63,11 @@ class Profile extends Component
 
         if (!empty($user->no_wa) && !empty($user->name) && !str_starts_with($user->name, 'User ')) {
             session()->flash('message', 'Profil berhasil dilengkapi.');
+            
+            if ($user->hasRole('admin')) {
+                return redirect()->route('admin.kehadiran');
+            }
+            
             return redirect()->route('hadir');
         }
 
