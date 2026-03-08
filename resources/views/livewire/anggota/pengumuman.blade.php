@@ -24,7 +24,7 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-1 gap-6 px-1">
+        <div class="grid grid-cols-1 gap-6 px-1">
         @forelse ($pengumumans as $item)
             <div class="glass-card rounded-[35px] overflow-hidden shadow-lg shadow-gray-200/50 border-none group animate-fade-up">
                 {{-- Decorative Top Line --}}
@@ -44,9 +44,7 @@
 
                     <div class="bg-gray-50/50 rounded-3xl p-5 border border-gray-100/50 relative">
                         <i class="bi bi-quote absolute top-2 right-4 text-emerald-100 text-3xl"></i>
-                        <p class="text-gray-600 text-sm leading-relaxed font-medium relative z-10 whitespace-pre-wrap truncate-multi-4">
-                            {{ $item->isi }}
-                        </p>
+                        <p class="text-gray-600 text-sm leading-relaxed font-medium relative z-10 truncate-multi-4 text-justify" style="white-space: pre-wrap;">{{ $item->isi }}</p>
                     </div>
 
                     <div class="mt-6 flex items-center justify-between">

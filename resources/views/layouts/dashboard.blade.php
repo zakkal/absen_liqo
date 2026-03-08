@@ -30,7 +30,6 @@
         }
         .btn-primary { background-color: #00796B !important; border-color: #00796B !important; }
         .btn-primary:hover { background-color: #004D40 !important; border-color: #004D40 !important; }
-        .sidebar-wrapper .sidebar-header img { border: 2px solid #00796B !important; }
         .badge.bg-light-primary { background-color: #e0f2f1 !important; color: #00796B !important; }
         .text-primary { color: #00796B !important; }
         .sidebar-wrapper .menu .sidebar-link i { color: #00796B; }
@@ -39,6 +38,9 @@
         /* Smoother Sidebar */
         .sidebar-wrapper { border-right: 1px solid #f1f5f9; }
         .sidebar-title { font-size: 0.7rem !important; letter-spacing: 1px; color: #94a3b8 !important; text-transform: uppercase; }
+
+        .profile-card-hover { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .profile-card-hover:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0, 121, 107, 0.15) !important; }
     </style>
     @livewireStyles
 </head>
@@ -48,31 +50,40 @@
         <div id="sidebar" class="active">
             <div class="sidebar-wrapper active shadow-xl" style="background: white; z-index: 9999;">
 
-                <div class="sidebar-header" style="padding: 1.5rem 1.5rem 0.5rem;">
-                    <div class="d-flex align-items-center">
-                        <div class="logo-icon me-3 flex-shrink-0">
-                             <a href="{{ route('profile') }}" class="d-block" style="width: 48px; height: 48px;">
-                                @if(Auth::user()->profile_photo)
-                                    <div class="rounded-circle shadow-sm overflow-hidden border border-2 border-emerald-600" style="width: 48px; height: 48px;">
-                                        <img src="{{ asset('storage/' . Auth::user()->profile_photo) }}" style="width: 100%; height: 100%; object-fit: cover;">
-                                    </div>
-                                @else
-                                    <div class="bg-emerald-600 rounded-circle shadow-sm d-flex align-items-center justify-content-center border border-2 border-emerald-50" style="width: 48px; height: 48px;">
-                                        <i class="bi bi-person-fill text-white fs-4"></i>
-                                    </div>
-                                @endif
-                             </a>
+                <div class="sidebar-header" style="padding: 1.25rem 1.5rem 0.5rem;">
+                    <!-- Mobile View Header & Toggler -->
+                    <div class="d-flex justify-content-between align-items-center mb-3 d-xl-none">
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="bi bi-shield-shaded" style="color: #00796B; font-size: 1.4rem;"></i>
+                            <span class="fw-bolder" style="color: #00796B; font-size: 1.1rem; letter-spacing: 0.5px;">HALAQAH</span>
                         </div>
-                        <div class="logo-title overflow-hidden">
-                            <h6 class="fw-bold mb-0 text-dark text-truncate" style="letter-spacing: -0.5px; font-size: 0.95rem;">{{ Auth::user()->name }}</h6>
-                            <span class="badge bg-light-primary text-primary px-2 py-0 rounded-pill" style="font-size: 0.6rem;">
-                                <i class="bi bi-patch-check-fill me-1"></i> LIQO KELAPA DUA
-                            </span>
-                        </div>
-                        <div class="toggler ms-auto">
-                            <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle text-dark"></i></a>
+                        <div class="toggler">
+                            <a href="#" class="sidebar-hide d-block text-dark fs-4"><i class="bi bi-x-circle-fill"></i></a>
                         </div>
                     </div>
+                    
+                    <!-- Profile Section -->
+                    <a href="{{ route('profile') }}" class="d-flex align-items-center text-decoration-none mt-xl-0 mt-2">
+                        <div class="flex-shrink-0 me-3">
+                            @if(Auth::user()->profile_photo)
+                                <div class="rounded-circle overflow-hidden d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; border: 2px solid #00796B; padding: 2px; background-color: white;">
+                                    <img class="rounded-circle d-block" src="{{ asset('storage/' . Auth::user()->profile_photo) }}" alt="Profile" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1/1;">
+                                </div>
+                            @else
+                                <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; background-color: #00796B; color: white;">
+                                    <i class="bi bi-person-fill fs-3"></i>
+                                </div>
+                            @endif
+                        </div>
+                        <div class="overflow-hidden w-100">
+                            <h6 class="fw-bold mb-1 text-dark text-truncate" style="font-size: 0.95rem; line-height: 1.2;">{{ Auth::user()->name }}</h6>
+                            <div class="d-flex align-items-center mt-1">
+                                <span class="badge rounded-pill" style="background-color: #e0f2f1; color: #00796B; font-size: 0.65rem; font-weight: 600; padding: 0.35em 0.6em;">
+                                    <i class="bi bi-circle-fill me-1" style="font-size: 5px; color: #10b981; vertical-align: middle;"></i> LIQO KELAPA DUA
+                                </span>
+                            </div>
+                        </div>
+                    </a>
                 </div>
                 <div class="sidebar-menu" style="margin-top: 0.5rem;">
                     <ul class="menu" style="margin-top: 0;">

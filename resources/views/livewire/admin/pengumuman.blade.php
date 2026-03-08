@@ -34,57 +34,66 @@
         {{-- LIST DATA (CARD STYLE) --}}
         <div class="grid grid-cols-1 gap-6">
             @forelse ($informasi as $index => $item)
-                <div class="bg-white rounded-[32px] p-6 md:p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:border-emerald-100 transition-all group relative overflow-hidden">
-                    {{-- Status Badge (Top Right) --}}
-                    <div class="absolute top-0 right-10 flex gap-2">
-                        <div class="px-4 py-2 {{ $item->is_active ? 'bg-emerald-50 text-emerald-600' : 'bg-rose-50 text-rose-600' }} rounded-b-2xl text-[10px] font-black uppercase tracking-widest border-x border-b border-current opacity-40 group-hover:opacity-100 transition-opacity">
+                <div class="bg-white rounded-[28px] p-5 md:p-6 border border-slate-100 shadow-sm hover:shadow-md hover:border-emerald-100 transition-all group relative">
+                    {{-- Status Badge (Mobile Top Right) --}}
+                    <div class="absolute top-5 right-5 flex md:hidden gap-2">
+                        <div class="px-4 py-1.5 {{ $item->is_active ? 'text-emerald-500 border-emerald-500' : 'text-rose-500 border-rose-500' }} rounded-full text-[9px] font-black uppercase tracking-widest border border-[1.5px]">
                             {{ $item->is_active ? 'Aktif' : 'Draft' }}
                         </div>
                     </div>
 
-                    <div class="flex flex-col md:flex-row gap-8 items-start">
-                        {{-- Date Section --}}
-                        <div class="shrink-0 flex md:flex-col items-center justify-center bg-gray-50 text-gray-400 rounded-[28px] p-5 w-full md:w-24 group-hover:bg-emerald-50 group-hover:text-emerald-600 transition-colors">
-                            <span class="text-3xl font-black leading-none">{{ $item->created_at->format('d') }}</span>
-                            <span class="text-[10px] font-black uppercase tracking-widest mt-2">{{ $item->created_at->format('M Y') }}</span>
+                    <div class="flex flex-col md:flex-row gap-5 md:gap-7 items-stretch">
+                        {{-- Date Pill --}}
+                        <div class="shrink-0 flex flex-col items-center justify-center bg-slate-50 text-slate-300 rounded-[24px] w-full md:w-28 py-6 md:py-8 transition-colors group-hover:bg-emerald-50 group-hover:text-emerald-400">
+                            <span class="text-[2.2rem] font-black leading-none mb-1">{{ $item->created_at->format('d') }}</span>
+                            <span class="text-[9px] font-black uppercase tracking-[0.2em] text-center leading-tight">
+                                {{ $item->created_at->format('M') }}<br>{{ $item->created_at->format('Y') }}
+                            </span>
                         </div>
 
                         {{-- Content Section --}}
-                        <div class="grow space-y-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{{ $item->created_at->diffForHumans() }}</span>
-                                <div class="w-1 h-1 rounded-full bg-gray-200"></div>
-                                <span class="text-[10px] font-bold text-emerald-500 uppercase tracking-widest">Official Post</span>
+                        <div class="grow flex flex-col py-1 mt-2 md:mt-1 w-full pl-0 md:pl-2">
+                            <div class="flex items-center gap-2.5 mb-2.5 mt-2 md:mt-0">
+                                <span class="text-[9px] font-black text-slate-300 uppercase tracking-widest">{{ $item->created_at->diffForHumans() }}</span>
+                                <div class="w-1.5 h-1.5 rounded-full bg-emerald-500"></div>
+                                <span class="text-[9px] font-black text-emerald-500 uppercase tracking-widest">Official Post</span>
                             </div>
                             
-                            <h3 class="text-2xl font-black text-gray-800 tracking-tight group-hover:text-[#00796B] transition-colors leading-tight">
+                            <h3 class="text-xl md:text-[22px] font-black text-slate-800 tracking-tight uppercase mb-2">
                                 {{ $item->judul }}
                             </h3>
                             
-                            <p class="text-gray-600 text-sm leading-relaxed line-clamp-2 md:line-clamp-3 font-medium">
-                                {{ $item->isi }}
-                            </p>
+                            <div class="text-slate-500 text-[13px] md:text-sm leading-relaxed font-medium text-left pr-0 md:pr-4" style="white-space: pre-wrap;">{{ $item->isi }}</div>
                             
-                            <div class="flex items-center gap-4 pt-2">
-                                <button wire:click="toggleStatus({{ $item->id }})" class="flex items-center gap-3 bg-gray-50 px-4 py-2 rounded-full border border-gray-100 hover:bg-emerald-50 hover:border-emerald-100 transition-all">
-                                    <div class="relative inline-flex h-4 w-8 items-center rounded-full transition-colors {{ $item->is_active ? 'bg-emerald-600' : 'bg-gray-300' }}">
-                                        <span class="inline-block h-2 w-2 transform rounded-full bg-white transition-transform {{ $item->is_active ? 'translate-x-5' : 'translate-x-1' }}"></span>
+                            <div class="mt-4 md:mt-auto pt-2">
+                                <button wire:click="toggleStatus({{ $item->id }})" class="flex items-center gap-2.5 bg-white px-4 py-2 rounded-full border-[1.5px] border-slate-100 hover:border-emerald-200 transition-all group/toggle shadow-sm w-fit">
+                                    <div class="relative inline-flex h-[14px] w-7 items-center rounded-full transition-colors {{ $item->is_active ? 'bg-emerald-500' : 'bg-slate-300' }}">
+                                        <span class="inline-block h-2.5 w-2.5 transform rounded-full bg-white transition-transform {{ $item->is_active ? 'translate-x-[14px]' : 'translate-x-[2px]' }}"></span>
                                     </div>
-                                    <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest">{{ $item->is_active ? 'Hide Info' : 'Show Info' }}</span>
+                                    <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest group-hover/toggle:text-emerald-500">{{ $item->is_active ? 'Hide Info' : 'Show Info' }}</span>
                                 </button>
                             </div>
                         </div>
 
                         {{-- Action Sidebar --}}
-                        <div class="shrink-0 flex md:flex-col gap-3 w-full md:w-auto mt-6 md:mt-0 pt-6 md:pt-0 border-t md:border-t-0 md:border-l border-gray-50 md:pl-8 justify-end">
-                            <button wire:click="openEdit({{ $item->id }})" class="flex-1 md:flex-none p-4 bg-sky-50 text-sky-600 rounded-2xl hover:bg-sky-600 hover:text-white transition-all shadow-sm flex items-center justify-center gap-3 font-black text-xs uppercase tracking-widest">
-                                <i class="bi bi-pencil-square"></i>
-                                <span class="md:hidden lg:inline">Edit</span>
-                            </button>
-                            <button wire:click="openDelete({{ $item->id }})" class="flex-1 md:flex-none p-4 bg-rose-50 text-rose-600 rounded-2xl hover:bg-rose-600 hover:text-white transition-all shadow-sm flex items-center justify-center gap-3 font-black text-xs uppercase tracking-widest">
-                                <i class="bi bi-trash-fill"></i>
-                                <span class="md:hidden lg:inline">Hapus</span>
-                            </button>
+                        <div class="shrink-0 flex flex-col w-full md:w-[110px] justify-between md:pl-6 mt-4 md:mt-0 gap-3 md:gap-0 relative">
+                            {{-- Status Badge (Desktop) --}}
+                            <div class="hidden md:flex justify-end pt-1">
+                                <div class="px-4 py-1.5 {{ $item->is_active ? 'text-emerald-500 border-emerald-500' : 'text-rose-500 border-rose-500' }} rounded-full text-[9px] font-black uppercase tracking-widest border border-[1.5px]">
+                                    {{ $item->is_active ? 'Aktif' : 'Draft' }}
+                                </div>
+                            </div>
+
+                            <div class="flex md:flex-col gap-2.5 w-full mt-auto mb-1">
+                                <button wire:click="openEdit({{ $item->id }})" class="w-full py-2.5 md:py-3 bg-[#f8fafc] text-sky-500 rounded-xl md:rounded-2xl hover:bg-sky-50 transition-all font-black text-[9px] md:text-[10px] uppercase tracking-widest flex items-center justify-center gap-2">
+                                    <i class="bi bi-pencil-square text-[11px] md:text-[12px]"></i>
+                                    <span>Edit</span>
+                                </button>
+                                <button wire:click="openDelete({{ $item->id }})" class="w-full py-2.5 md:py-3 bg-[#fff1f2] text-rose-500 rounded-xl md:rounded-2xl hover:bg-rose-50 transition-all font-black text-[9px] md:text-[10px] uppercase tracking-widest flex items-center justify-center gap-2">
+                                    <i class="bi bi-trash-fill text-[11px] md:text-[12px]"></i>
+                                    <span>Hapus</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
